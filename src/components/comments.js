@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-class post extends Component {
+class comments extends Component {
 
 state = {
-    posts:[],
-    // posts:null
+    comments:[],
+    // comments:null
 };
 
 
 async componentDidMount (){
     let id = this.props.match.params.post_id
-    const res = await axios.get('https://jsonplaceholder.typicode.com/posts?userId=' + id)
-    this.setState({posts: res.data})
-    console.log(this.state.posts)
+    const res = await axios.get('https://jsonplaceholder.typicode.com/comments?postId=' + id)
+    this.setState({comments: res.data})
+    console.log(this.state.comments)
 }
   render() {
 
@@ -30,12 +30,12 @@ async componentDidMount (){
 </thead>
 <tbody>
 
-{this.state.posts.map(post =>
+{this.state.comments.map(comment =>
 
-<tr key={post.id}>
+<tr key={comment.id}>
 
-  <th scope="row">{post.id}</th>
-  <th scope="row">{post.body}</th>
+  <th scope="row">{comment.id}</th>
+  <th scope="row">{comment.body}</th>
 
 
 
@@ -48,4 +48,4 @@ async componentDidMount (){
   }
 }
 
-export default post;
+export default comments;
