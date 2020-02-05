@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import axios from 'axios';
+import post from './components/post'
 
 import {
 BrowserRouter as Router,
@@ -8,9 +9,6 @@ Route,
 Link
 } from "react-router-dom";
 
-const user = ({match})=>{
-return(<h1>user00000{match.params.username}</h1>)
-}
 
 class App extends Component {
 state = {
@@ -21,8 +19,12 @@ users:[]
 async componentDidMount (){
 const res = await axios.get('https://jsonplaceholder.typicode.com/users')
 this.setState({users: res.data})
-console.log(this.state.users)
+// console.log(this.state.users)
+
+
 }
+
+
 render() {
 return ( 
 
@@ -30,7 +32,6 @@ return (
   
 <div className="app">
 
-<Link to="/user/amr">amr</Link>
   {/* link */}
       <ul>
         <li>
@@ -48,7 +49,9 @@ return (
     }/>
 
 
-    <Route path="/user/:username" exact component={user}/>
+
+
+    <Route path="/:post_id" exact component={post}/>
 
 
 
@@ -72,9 +75,8 @@ return (
 
 <tr key={user.id}>
 
-  <th scope="row"><Link to="/">{user.id}</Link></th>
-  <th scope="row"><Link to="/">{user.name}</Link></th>
-
+  <th scope="row"> <Link to={'/'+ user.id}>{user.id}</Link></th>
+  <th scope="row"> <Link to={'/'+ user.id}>{user.name}</Link></th>
 
 
 </tr>
