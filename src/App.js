@@ -1,20 +1,17 @@
 import React, {Component} from 'react';
 import './App.css';
-import User from './components/User'
-import User1 from './components/User1'
 import axios from 'axios';
 
 import {
 BrowserRouter as Router,
 Route,
-Link,
-Redirect
+Link
 } from "react-router-dom";
 
+const user = ({match})=>{
+return(<h1>user00000{match.params.username}</h1>)
+}
 
-// const Net = ({match})=>{
-// return(<h1>hi hi hi hi{match.params.userid}</h1>)
-// }
 class App extends Component {
 state = {
 users:[]
@@ -30,27 +27,30 @@ render() {
 return ( 
 
 <Router>
+  
 <div className="app">
 
-
+<Link to="/user/amr">amr</Link>
   {/* link */}
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
 
-    </ul>
+      </ul>
 
-<Route path="/" exact render={
-  ()=>{
-    return(
-      <h1>hi in your home</h1>
-    )
-  }
-}/>
+    <Route path="/" exact render={
+      ()=>{
+        return(
+          <h1>hi in your home</h1>
+        )
+      }
+    }/>
 
 
-<Route path="/User1" exact component={User1}/>
+    <Route path="/user/:username" exact component={user}/>
+
+
 
 
 
@@ -72,8 +72,8 @@ return (
 
 <tr key={user.id}>
 
-  <th scope="row"><Link to="/User1/:userid">{user.id}</Link></th>
-  <th scope="row"><Link to="/Net" exact="true">{user.name}</Link></th>
+  <th scope="row"><Link to="/">{user.id}</Link></th>
+  <th scope="row"><Link to="/">{user.name}</Link></th>
 
 
 
@@ -83,7 +83,6 @@ return (
 </tbody>
 </table>
 
-  <Route path="/User1/:userid" exact strict component={User1}/>
 
 </Router>
 );
