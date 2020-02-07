@@ -15,10 +15,10 @@ class home extends Component {
   render() {
     return (
       <div>
-        <Router>       
+        {/* <Router>       
           <Route path="/:post_id" exact component={post} />
           
-        </Router>
+        </Router> */}
         
         <table className="table table-bordered table-dark">
           <thead>

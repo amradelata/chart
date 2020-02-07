@@ -8,9 +8,10 @@ state = {
 };
 async componentDidMount (){
     let id = this.props.match.params.post_id
-    const res = await axios.get('https://jsonplaceholder.typicode.com/posts?userId=' + 10)
+    console.log(id)
+    const res = await axios.get('https://jsonplaceholder.typicode.com/posts?userId=' + id)
     this.setState({posts: res.data})
-    console.log(this.state.posts)
+    
 
 }
   render () {

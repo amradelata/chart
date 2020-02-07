@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import chart from './chart'
+import Chart from './Chart'
 import posts from './posts'
+import post from './post'
 import {
 BrowserRouter as Router,
 Route,
@@ -52,7 +53,8 @@ class Nav extends Component {
 
 
     <Route exact  path="/posts" component={posts}/>
-    <Route exact  path="/" component={chart}/>
+    <Route exact  path="/posts/:post_id" component={post}/>
+    <Route exact  path="/" component={Chart}/>
   </Router>
 </div>
 
