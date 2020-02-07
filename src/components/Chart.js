@@ -22,7 +22,7 @@ class Chart extends Component {
       value: 'Please write the data.'        
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.processData = this.processData.bind(this);
   };
 
 
@@ -30,9 +30,23 @@ class Chart extends Component {
     this.setState({value: e.target.value});
   }
 
-  handleSubmit(e) {
-    alert('your data is: ' + this.state.value);
-    e.preventDefault();
+   processData(e) {
+      //  alert('your data is: ' + this.state.value);
+      e.preventDefault();
+      var record_num = 1;  // or however many elements there are in each row
+      var allTextLines = this.state.value.split(/\r\n|\n/);
+      var entries = allTextLines[0].split(',');
+      var lines = [];
+
+      var headings = entries.splice(0,record_num);
+      while (entries.length>0) {
+          var tarr = [];
+          for (var j=0; j<record_num; j++) {
+              tarr.push(headings[j]+":"+entries.shift());
+          }
+          lines.push(tarr);
+      }
+      console.log(lines);
   }
 
   
@@ -41,13 +55,12 @@ class Chart extends Component {
     return ( 
 
         <div className="Chart">
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.processData}>
             <textarea value={this.state.value} onChange={this.handleChange} />
             <input type="submit" value="Submit" />
           </form>
             <Line
               data={this.state.chartData}
-            
               options={{}}
             />
         </div>
