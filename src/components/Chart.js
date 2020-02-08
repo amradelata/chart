@@ -5,6 +5,8 @@ import { Line } from 'react-chartjs-2';
 class Chart extends Component {
   constructor(props){
     super(props);
+    this.textInputOne = React.createRef();
+    this.textInputTow = React.createRef();
     this.state = {
       chartData: {
         labels: ['1-1-2019' ,'1-1-2019'],
@@ -22,7 +24,6 @@ class Chart extends Component {
       // value: 'Please write the data.' ,
       lines : [],
       maenArray: []
-
     };
     this.handleChange = this.handleChange.bind(this);
     this.processData = this.processData.bind(this);
@@ -46,7 +47,12 @@ class Chart extends Component {
         {spent : allTextLines[2]},
       ]
       this.state.maenArray.push(myArray)
-      console.log(this.state.maenArray)
+      let option = document.createElement('option');
+      let node = document.createTextNode(this.state.maenArray[0][1].date);
+      option.appendChild(node);
+      let element = this.textInputOne.current
+      element.appendChild(option);
+      console.log(this.state.maenArray[0][1].date)
   }
 
 
@@ -58,19 +64,20 @@ class Chart extends Component {
             <textarea value={this.state.value} onChange={this.handleChange} />
             <input type="submit" value="Submit" />
    
-            <select>
-              { this.state.maenArray.map(item =>
-              <div>
-                  <option key={item.id}>{item.date}</option>
-                  <option>{item.amount}</option>
-                  <option>{item.spent}</option>
-              </div>
-                 
-                 )}
+
+             <select ref={this.textInputOne}>
+ 
             </select>
+
+             <select ref={this.textInputTow}>
+ 
+            </select>
+         
           </form>
 
-            <Line
+
+
+              <Line
               data={this.state.chartData}
               options={{}}
             />
