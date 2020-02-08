@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 
 class Chart extends Component {
@@ -31,21 +31,12 @@ class Chart extends Component {
   }
 
    processData(e) {
-      //  alert('your data is: ' + this.state.value);
+      alert('your data is: ' + this.state.value);
       e.preventDefault();
-      var record_num = 1;  // or however many elements there are in each row
-      var allTextLines = this.state.value.split(/\r\n|\n/);
-      var entries = allTextLines[0].split(',');
-      var lines = [];
-
-      var headings = entries.splice(0,record_num);
-      while (entries.length>0) {
-          var tarr = [];
-          for (var j=0; j<record_num; j++) {
-              tarr.push(headings[j]+":"+entries.shift());
-          }
-          lines.push(tarr);
-      }
+      let record_num = 3;  
+      let allTextLines = this.state.value.split(" ");
+      let lines = [];
+      lines.push(allTextLines) 
       console.log(lines);
   }
 
@@ -58,6 +49,12 @@ class Chart extends Component {
           <form onSubmit={this.processData}>
             <textarea value={this.state.value} onChange={this.handleChange} />
             <input type="submit" value="Submit" />
+            <select id="cars">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="opel">Opel</option>
+              <option value="audi">Audi</option>
+            </select>
           </form>
             <Line
               data={this.state.chartData}

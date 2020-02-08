@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Nav from './components/Nav'
-import Chart from './components/Chart'
+// import Chart from './components/Chart'
 
 class App extends Component {
   render() {
