@@ -19,8 +19,9 @@ class Chart extends Component {
         ]
       },
       
-      value: 'Please write the data.' ,
-      lines : []
+      // value: 'Please write the data.' ,
+      lines : [],
+      maenArray: []
 
     };
     this.handleChange = this.handleChange.bind(this);
@@ -38,10 +39,16 @@ class Chart extends Component {
       let record_num = 3;  
       let allTextLines = this.state.value.split(" ");
       this.state.lines.push(allTextLines) 
-      console.log(this.state.lines)
+      let myArray = [
+        {id :   Math.random().toString(36).substr(2, 9)},
+        {date : allTextLines[0]},
+        {amount : allTextLines[1]},
+        {spent : allTextLines[2]},
+      ]
+      this.state.maenArray.push(myArray)
+      console.log(this.state.maenArray)
   }
 
-  
 
   render() {
     return ( 
@@ -50,16 +57,19 @@ class Chart extends Component {
           <form onSubmit={this.processData}>
             <textarea value={this.state.value} onChange={this.handleChange} />
             <input type="submit" value="Submit" />
-            <ul>
-            <li>{this.state.lines}</li>
-            </ul>
-            {/* <select ref="myid" id="cars">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
-            </select> */}
+   
+            <select>
+              { this.state.maenArray.map(item =>
+              <div>
+                  <option key={item.id}>{item.date}</option>
+                  <option>{item.amount}</option>
+                  <option>{item.spent}</option>
+              </div>
+                 
+                 )}
+            </select>
           </form>
+
             <Line
               data={this.state.chartData}
               options={{}}
