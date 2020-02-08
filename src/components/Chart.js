@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
-
 class Chart extends Component {
   constructor(props){
     super(props);
     this.textInputOne = React.createRef();
     this.textInputTow = React.createRef();
-    this.textInputThree = React.createRef();
+    // this.textInputThree = React.createRef();
     this.state = {
       chartData: {
-        labels: ['1-1-2019' ,'1-1-2019'],
+        labels: [ ],
         datasets:[
           {
             label: 'My Chart',
             data: [
-              0
+                
             ],
-            backgroundColor:['red','red']
+            backgroundColor:['red','black']
           }
         ]
       },
-      
       
       // value: 'Please write the data.' ,
       lines : [],
@@ -31,16 +29,14 @@ class Chart extends Component {
     this.processData = this.processData.bind(this);
   };
 
-
   handleChange(e) {
     this.setState({value: e.target.value});
   }
 
    processData(e) {
-      // alert('your data is: ' + this.state.value);
       e.preventDefault();
       let record_num = 3;  
-      let allTextLines = this.state.value.split(" ");
+      let allTextLines = this.state.value.split(",");
       this.state.lines.push(allTextLines) 
       let myArray = [
         {id :   Math.random().toString(36).substr(2, 9)},
@@ -61,14 +57,22 @@ class Chart extends Component {
       let elementTow = this.textInputTow.current
       elementTow.appendChild(optionTow);
       // 
-      let optionThree = document.createElement('option');
-      let nodeThree = document.createTextNode(this.state.maenArray[0][3].spent);
-      optionThree.appendChild(nodeThree);
-      let elementThree = this.textInputThree.current
-      elementThree.appendChild(optionThree);
+      // let optionThree = document.createElement('option');
+      // let nodeThree = document.createTextNode(this.state.maenArray[0][3].spent);
+      // optionThree.appendChild(nodeThree);
+      // let elementThree = this.textInputThree.current
+      // elementThree.appendChild(optionThree);
       this.state.chartData.datasets[0].data[0] = this.state.maenArray[0][1].date
-      console.log(this.state.chartData.datasets[0].data[0] )
-  }
+      this.state.chartData.labels[0] = this.state.maenArray[0][2].amount
+      this.state.chartData.datasets[0].data[1] = this.state.maenArray[0][2].amount
+  };
+
+// addToChart(e){
+//       this.state.chartData.datasets[0].data[0] = this.state.maenArray[0][1].date
+//       this.state.chartData.datasets[0].data[1] = this.state.maenArray[0][2].amount
+//       this.state.chartData.labels[0] = this.state.maenArray[0][2].amount
+//       console.log(this.state.chartData.labels[0])
+// }
 
 
   render() {
@@ -77,24 +81,22 @@ class Chart extends Component {
         <div className="Chart">
           <form onSubmit={this.processData}>
             <textarea value={this.state.value} onChange={this.handleChange} />
-            <input type="submit" value="Submit" />
+            <input type="submit" value="process" />
             
 
 
              <select ref={this.textInputOne}>
- 
+              <option value="X">X</option>
             </select>
 
              <select ref={this.textInputTow}>
- 
+                <option value="Y">Y</option>
             </select>
-             <select ref={this.textInputThree}>
+             {/* <select ref={this.textInputThree}>
  
-            </select>
-         
+            </select> */}
+            {/* <button onClick={this.addToChart}>apply</button> */}
           </form>
-
-
 
               <Line
               data={this.state.chartData}
@@ -105,5 +107,4 @@ class Chart extends Component {
       );
   }
 }
-
 export default Chart;
