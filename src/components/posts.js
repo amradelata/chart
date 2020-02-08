@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import post from "./post";
-import { BrowserRouter as  Link } from "react-router-dom";
+import {
+BrowserRouter as Router,
+Route,
+Link
+} from "react-router-dom";
 
 class home extends Component {
   state = {
@@ -15,11 +18,6 @@ class home extends Component {
   render() {
     return (
       <div>
-        {/* <Router>       
-          <Route path="/:post_id" exact component={post} />
-          
-        </Router> */}
-        
         <table className="table table-bordered table-dark">
           <thead>
             <tr>

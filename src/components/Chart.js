@@ -15,7 +15,7 @@ class Chart extends Component {
           {
             label: 'pouplathin',
             data: [
-              100, 200
+              0
             ],
             backgroundColor:['red','red']
           }
@@ -65,6 +65,8 @@ class Chart extends Component {
       optionThree.appendChild(nodeThree);
       let elementThree = this.textInputThree.current
       elementThree.appendChild(optionThree);
+      this.state.chartData.datasets[0].data[0] = 200
+      console.log(this.state.chartData.datasets[0].data[0] )
   }
 
 
@@ -75,7 +77,8 @@ class Chart extends Component {
           <form onSubmit={this.processData}>
             <textarea value={this.state.value} onChange={this.handleChange} />
             <input type="submit" value="Submit" />
-   
+            
+
 
              <select ref={this.textInputOne}>
  
