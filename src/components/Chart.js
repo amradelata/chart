@@ -7,6 +7,7 @@ class Chart extends Component {
     super(props);
     this.textInputOne = React.createRef();
     this.textInputTow = React.createRef();
+    this.textInputThree = React.createRef();
     this.state = {
       chartData: {
         labels: ['1-1-2019' ,'1-1-2019'],
@@ -52,7 +53,18 @@ class Chart extends Component {
       option.appendChild(node);
       let element = this.textInputOne.current
       element.appendChild(option);
-      console.log(this.state.maenArray[0][1].date)
+      // 
+      let optionTow = document.createElement('option');
+      let nodeTow = document.createTextNode(this.state.maenArray[0][2].amount);
+      optionTow.appendChild(nodeTow);
+      let elementTow = this.textInputTow.current
+      elementTow.appendChild(optionTow);
+      // 
+      let optionThree = document.createElement('option');
+      let nodeThree = document.createTextNode(this.state.maenArray[0][3].spent);
+      optionThree.appendChild(nodeThree);
+      let elementThree = this.textInputThree.current
+      elementThree.appendChild(optionThree);
   }
 
 
@@ -70,6 +82,9 @@ class Chart extends Component {
             </select>
 
              <select ref={this.textInputTow}>
+ 
+            </select>
+             <select ref={this.textInputThree}>
  
             </select>
          
