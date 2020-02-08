@@ -13,7 +13,7 @@ class Chart extends Component {
         labels: ['1-1-2019' ,'1-1-2019'],
         datasets:[
           {
-            label: 'pouplathin',
+            label: 'My Chart',
             data: [
               0
             ],
@@ -21,6 +21,7 @@ class Chart extends Component {
           }
         ]
       },
+      
       
       // value: 'Please write the data.' ,
       lines : [],
@@ -65,7 +66,7 @@ class Chart extends Component {
       optionThree.appendChild(nodeThree);
       let elementThree = this.textInputThree.current
       elementThree.appendChild(optionThree);
-      this.state.chartData.datasets[0].data[0] = 200
+      this.state.chartData.datasets[0].data[0] = this.state.maenArray[0][1].date
       console.log(this.state.chartData.datasets[0].data[0] )
   }
 
@@ -97,6 +98,7 @@ class Chart extends Component {
 
               <Line
               data={this.state.chartData}
+              redraw 
               options={{}}
             />
         </div>
