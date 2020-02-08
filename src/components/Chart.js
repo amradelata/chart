@@ -19,7 +19,9 @@ class Chart extends Component {
         ]
       },
       
-      value: 'Please write the data.'        
+      value: 'Please write the data.' ,
+      lines : []
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.processData = this.processData.bind(this);
@@ -31,13 +33,12 @@ class Chart extends Component {
   }
 
    processData(e) {
-      alert('your data is: ' + this.state.value);
+      // alert('your data is: ' + this.state.value);
       e.preventDefault();
       let record_num = 3;  
       let allTextLines = this.state.value.split(" ");
-      let lines = [];
-      lines.push(allTextLines) 
-      console.log(lines);
+      this.state.lines.push(allTextLines) 
+      console.log(this.state.lines)
   }
 
   
@@ -49,12 +50,15 @@ class Chart extends Component {
           <form onSubmit={this.processData}>
             <textarea value={this.state.value} onChange={this.handleChange} />
             <input type="submit" value="Submit" />
-            <select id="cars">
+            <ul>
+            <li>{this.state.lines}</li>
+            </ul>
+            {/* <select ref="myid" id="cars">
               <option value="volvo">Volvo</option>
               <option value="saab">Saab</option>
               <option value="opel">Opel</option>
               <option value="audi">Audi</option>
-            </select>
+            </select> */}
           </form>
             <Line
               data={this.state.chartData}
